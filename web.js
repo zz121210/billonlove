@@ -1,17 +1,16 @@
-//모듈
+
 const expressLayouts = require('express-ejs-layouts')
 const express = require('express')
 const app = express()
 const path = require('path')
 const db = require('./assets/lib/db')
 
-// 라우터
 
 const loginRouter = require('./program/login/route')
 const paperRouter = require('./program/paper/route')
 const QRscanRouter = require('./program/QRscan/route')
 
-//정적 파일을 사용하기위한 세팅
+
 app.use(express.static(path.join(__dirname,'/')));
 
 // bodyparser
