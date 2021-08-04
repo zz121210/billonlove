@@ -1,0 +1,291 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../program/paper/css/style.css">
+<form action="/asd" method="post">
+<div class="wrapper">
+    <div class="container">
+        <div class="title">
+            건강상태확인 전자문진표
+        </div>
+        <ul class="paper">
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항1</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 체온을 적어주세요
+                            </span>
+                            <div>
+                                <input type="number" name="temperature"  step="0.1">
+                                <span class="msg"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항2</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 호흡기 증상이 있습니까? <br>
+                                (인후통, 기침, 호흡곤란)
+                            </span>
+                            <div>
+                                <input type="checkbox" name="yes"> 예 <input type="checkbox" value="no" name="no"> 아니오
+                                <span class="msg"></span>
+                            </div>
+                            <div>
+                                증상 : <input type="text" name="symtom" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항3</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 기타 증상이 있습니까? <br>
+                                (근육동, 두통, 설사, 메스꺼움)
+                            </span>
+                            <div>
+                                <input type="checkbox" name="yes"> 예 <input type="checkbox" value="no" name="no"> 아니오
+                                <span class="msg"></span>
+                            </div>
+                            <div>
+                                증상 : <input type="text" name="etcSymtom" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항4</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                최근 4개월 이내 코로나 19 <br>
+                                확진 과거력이 있습니까?
+                            </span>
+                            <div>
+                                <input type="checkbox" name="yes"> 예 <input type="checkbox" value="no" name="no"> 아니오
+                                <span class="msg"></span>
+                            </div>
+                            <div>
+                                확진일 : <input type="text" class="calender" name="covid" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항5</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                본인이나 동거인 중 최근 14일 이내 <br>
+                                해외입국 사실이 있습니까?
+                            </span>
+                            <div>
+                                <input type="checkbox" name="yes"> 예 <input type="checkbox" value="no" name="no"> 아니오
+                                <span class="msg"></span>
+                            </div>
+                            <div>
+                                국가 : <input type="text" name="country" disabled> <br>
+                                입국일자 : <input type="text" class="calender" name="entry_date" disabled>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항6</span>
+                        <div class="flex-area1">
+                            <div class="description">
+                                최근 14일 이내 지인 중 코로나 19 <br>
+                                의심환자와 접촉한 사실이 있습니까?
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="checkbox" name="yes"> 예 <input type="checkbox" value="no" name="no"> 아니오
+                                    <span class="msg"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="padding-top"></div>
+        <div class="margin-auto">
+            <div class="flex-wrapper">
+                <div class="flex-area2">
+                    <input type="checkbox" name="agreement">
+                </div>
+                <div class="description">
+                    코로나 확진자 발생 시 작성한 문진표와 <br>
+                    수집된 개인정보 이용을 동의하고 방역팀의 <br>
+                    방역지침에 적극적으로 협조할 것을 동의합니다. <br>
+                    <span class="msg"></span>
+                </div>
+            </div>
+            <div class="margin-auto">
+                <div class="area">
+                    <div class="padding-top"></div>
+                    <div class="center">
+                    <div class="date">
+                        <span class="year"></span>년 <span class="month"></span>월 <span class="day"></span>일
+                    </div>
+                    </div>
+                    <div class="padding-top"></div>
+                    <div class="center">
+                        성명 : <input type="text" name="name"> <br>
+                        연락처 : <input type="number" maxlength="12" name="phone"  step="0.1"> <br>
+                        <input type="submit" value="제출하기" onclick="return valid()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script>
+    var now = new Date();	// 현재 날짜 및 시간
+    var year = now.getFullYear();	// 연도
+    var month = now.getMonth();	// 월
+    var day = now.getDate();	// 일
+    
+    date = `${year}년 ${month}월 ${day}월`
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.date').innerText= date
+    })
+
+    flatpickr(".calender");
+
+    function valid() {
+        if(document.getElementsByName('temperature')[0].value == '' ) {
+            document.getElementsByName('temperature')[0].focus()
+            document.getElementsByClassName('msg')[0].innerText = '필수 항목 입니다.'
+            return false
+        }
+
+        if(document.getElementsByName('yes')[0].checked == false 
+        && document.getElementsByName('no')[0].checked == false) {
+            document.getElementsByName('yes')[0].focus()
+            document.getElementsByClassName('msg')[1].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByName('yes')[0].checked == true 
+        && document.getElementsByName('symtom')[0].value == '' ) {
+            document.getElementsByName('symtom')[0].focus()
+            return false
+        }
+        
+        if(document.getElementsByName('yes')[1].checked == false 
+        && document.getElementsByName('no')[1].checked == false) {
+            document.getElementsByName('yes')[1].focus()
+            document.getElementsByClassName('msg')[2].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByName('yes')[1].checked == true 
+        && document.getElementsByName('etcSymtom')[0].value == '' ) {
+            document.getElementsByName('etcSymtom')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByName('yes')[2].checked == false 
+        && document.getElementsByName('no')[2].checked == false) {
+            document.getElementsByName('yes')[2].focus()
+            document.getElementsByClassName('msg')[3].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByName('yes')[2].checked == true 
+        && document.getElementsByName('covid')[0].value == '' ) {
+            document.getElementsByName('covid')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByName('yes')[3].checked == false 
+        && document.getElementsByName('no')[3].checked == false) {
+            document.getElementsByName('yes')[3].focus()
+            document.getElementsByClassName('msg')[4].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByName('yes')[3].checked == true 
+        && document.getElementsByName('country')[0].value == '' ) {
+            document.getElementsByName('country')[0].focus()
+            return false
+        }
+        if(document.getElementsByName('yes')[3].checked == true 
+        && document.getElementsByName('entry_date')[0].value == '' ) {
+            document.getElementsByName('entry_date')[0].focus()
+            return false
+        }
+    
+    }
+
+
+    document.getElementsByName('yes')[0].addEventListener('click', () => {
+            document.getElementsByName('no')[0].checked = false
+            document.getElementsByName('symtom')[0].disabled = false
+    })
+    document.getElementsByName('no')[0].addEventListener('click', () => {
+            document.getElementsByName('yes')[0].checked = false
+            document.getElementsByName('symtom')[0].disabled = true
+    })
+
+    document.getElementsByName('yes')[1].addEventListener('click', () => {
+            document.getElementsByName('no')[1].checked = false
+            document.getElementsByName('etcSymtom')[0].disabled = false
+    })
+    document.getElementsByName('no')[1].addEventListener('click', () => {
+            document.getElementsByName('yes')[1].checked = false
+            document.getElementsByName('etcSymtom')[0].disabled = true
+    })
+
+    document.getElementsByName('yes')[2].addEventListener('click', () => {
+            document.getElementsByName('no')[2].checked = false
+            document.getElementsByName('covid')[0].disabled = false
+    })
+    document.getElementsByName('no')[2].addEventListener('click', () => {
+            document.getElementsByName('yes')[2].checked = false
+            document.getElementsByName('covid')[0].disabled = true
+            document.getElementsByName('covid')[0].value = null
+    })
+
+    document.getElementsByName('yes')[3].addEventListener('click', () => {
+            document.getElementsByName('no')[3].checked = false
+            document.getElementsByName('country')[0].disabled = false
+            document.getElementsByName('entry_date')[0].disabled = false
+    })
+    document.getElementsByName('no')[3].addEventListener('click', () => {
+            document.getElementsByName('yes')[3].checked = false
+            document.getElementsByName('country')[0].disabled = true
+            document.getElementsByName('entry_date')[0].disabled = true
+            document.getElementsByName('country')[0].value = null
+            document.getElementsByName('entry_date')[0].value = null
+    })
+
+    document.getElementsByName('yes')[4].addEventListener('click', () => {
+            document.getElementsByName('no')[4].checked = false
+    })
+    document.getElementsByName('no')[4].addEventListener('click', () => {
+            document.getElementsByName('yes')[4].checked = false
+    })
+
+</script>

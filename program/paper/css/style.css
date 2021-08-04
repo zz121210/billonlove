@@ -1,0 +1,82 @@
+.wrapper {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.margin-auto {
+    max-width: 310px;
+    margin: auto;
+}
+
+
+.flex-wrapper {
+    display: flex;
+}
+
+.padding-top {
+    padding-top : 1.5rem;
+}
+
+.container {  
+    width: 100%;
+}
+
+.title {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #0a4a9b;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.paper>li {
+    width: 100%;
+    padding: 0.7rem;
+}
+
+.paper>li>.margin-auto>div>.question {
+    padding: 0px 5px 0px 5px;
+    height: 20%;
+    width: 50px;
+}
+
+.paper>li:nth-child(n) {
+    background-color: #ffffff;
+}
+
+.paper>li:nth-child(2n) {
+    background-color: #eeeeee;
+}
+
+
+.paper>li:nth-child(n)>.margin-auto>div>.question {
+    background-color: #eeeeee;
+}
+
+.paper>li:nth-child(2n)>.margin-auto>div>.question {
+    background-color: #ffffff;
+}
+
+.description {
+    font-size : 0.85rem
+}
+
+.flex-area2 {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    text-align: center;
+}
+
+.center{
+    text-align: center;
+    padding-right: 10px;
+}
+
+.msg {
+    color: red;
+    font-size : 0.75rem
+}
