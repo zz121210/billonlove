@@ -4,7 +4,7 @@ const db = require('../../assets/lib/db')
 const qr = require('qrcode')
 
 
-router.get("/:place", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   msg = `hello ${Date.now()}`
   url = await qr.toDataURL(msg)
   
