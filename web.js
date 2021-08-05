@@ -1,4 +1,3 @@
-
 const expressLayouts = require('express-ejs-layouts')
 const express = require('express')
 const app = express()

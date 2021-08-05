@@ -27,7 +27,6 @@
     background-color: #0a4a9b;
     color: white;
     text-align: center;
-    border-radius: 10px 10px 0px 0px;
 }
 
 .paper>li {
@@ -79,4 +78,21 @@
 .msg {
     color: red;
     font-size : 0.75rem
+}
+
+.QRcode{
+
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+.QRcode>.title {
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+}
+
+.QRcode>img{
+    width: 250px;
+    height: 250px;
 }
