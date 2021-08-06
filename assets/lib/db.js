@@ -5,7 +5,6 @@ const db = mysql.createConnection({
   user     : 'billionlove',
   password : 'billionlove9584',
   database : 'billionlove',
-  
 })
 
 db.connect()

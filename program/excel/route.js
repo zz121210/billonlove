@@ -55,7 +55,6 @@ router.get("/del/:value", (req, res) => {
 
     db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
     db.query('SELECT date FROM paper GROUP BY date', (err, date) => { 
-      filelist_reverse = filelist.reverse()
       res.redirect('/excel')
     })
     }) 
