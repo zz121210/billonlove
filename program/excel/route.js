@@ -25,12 +25,12 @@ fs.readdir("./excel", (err, filelist) => {
   
   db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
   db.query('SELECT date FROM paper GROUP BY date', (err, date) => { 
-    filelist_reverse = filelist.reverse()
+    
     res.render("../../program/excel/views/index.ejs",
       {
         rows,
         date,
-        filelist_reverse,
+        filelist,
         selected : get.date,
       }
     )

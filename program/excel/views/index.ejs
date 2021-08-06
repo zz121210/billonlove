@@ -67,11 +67,11 @@
         <input class="xlsx-download" type="button" value="다운로드">
         
         <ul>
-            <% if(locals.filelist_reverse) { %>
-                <% for(let i=0; i<filelist_reverse.length; i++) {%>
+            <% if(locals.filelist) { %>
+                <% for(let i=0; i<filelist.length; i++) {%>
                     <li>
-                        <%=i+1 %>. <a href="../../excel/<%= filelist_reverse[i]%> " download=""><%=filelist_reverse[i]%></a>
-                        <b> <a href="/excel/del/<%=filelist_reverse[i]%> ">삭제</a> </b>         
+                        <%=i+1 %>. <a href="../../excel/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
+                        <b> <a href="/excel/del/<%=filelist[i]%> ">삭제</a> </b>         
                     </li>
                         
                     
