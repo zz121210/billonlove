@@ -7,8 +7,4 @@ router.get("/", (req, res) => {
   res.render("../../program/home/views/index.ejs")
 })
 
-router.get("/excel", (req, res) => {
-  res.render("../../program/home/views/index.ejs")
-})
-
 module.exports = router;
