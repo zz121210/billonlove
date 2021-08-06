@@ -4,7 +4,8 @@ const db = mysql.createConnection({
   host     : 'billionlove.cafe24app.com',
   user     : 'billionlove',
   password : 'billionlove9584',
-  database : 'billionlove'
+  database : 'billionlove',
+  port:'3306'
 })
 
 db.connect()
