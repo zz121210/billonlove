@@ -32,7 +32,6 @@ fs.readdir("./excel", (err, filelist) => {
         date,
         filelist_reverse,
         selected : get.date,
-         
       }
     )
   })

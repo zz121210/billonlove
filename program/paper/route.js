@@ -42,7 +42,7 @@ router.post("/process", async (req, res) => {
   msg = temperature+'/'+symtom+'/'+etc_symtom+'/'+covid+'/'+country+'/'+entry_date+'/'+contact+'/'+name+'/'+phone
   
   url = await qr.toDataURL(msg)
-  res.render("../../program/paper/views/qr.ejs", 
+  res.render("../../program/paper/views/QR.ejs", 
     {
       title : 'Express',
       dataUrl: url,
