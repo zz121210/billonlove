@@ -139,7 +139,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/e
       file_name = post.date
     }
 
-    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name}_${Math.floor(Math.random() * 1000)}.xlsx`);
+    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
     })
   })
   res.redirect('/excel')
