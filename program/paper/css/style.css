@@ -27,6 +27,8 @@
     background-color: #0a4a9b;
     color: white;
     text-align: center;
+    font-size: 25px;
+    padding:10px;
 }
 
 .paper>li {
@@ -38,6 +40,7 @@
     padding: 0px 5px 0px 5px;
     height: 20%;
     width: 50px;
+    font-size: 16px;
 }
 
 .paper>li:nth-child(n) {
@@ -58,7 +61,11 @@
 }
 
 .description {
-    font-size : 0.85rem
+    font-size : 0.80rem
+}
+
+.flex-area1 {
+    margin-left: 23px;
 }
 
 .flex-area2 {
@@ -95,4 +102,34 @@
 .QRcode>img{
     width: 250px;
     height: 250px;
+}
+
+.choice, .answer {
+    font-size : 0.80rem
+}
+
+.agreement {
+    margin-left: 15px;
+}
+
+.submit {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #0a4a9b;
+    padding:5px 10px 5px 10px;
+    color: white;
+    outline: #0a4a9b;
+    margin:30px 0px 50px 0px;
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
+table{
+
+    width: 190px;
+}
+
+th {
+    width: 40px;
 }

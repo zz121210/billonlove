@@ -1,13 +1,12 @@
-// const mysql = require('mysql')
+const mysql = require('mysql')
 
-// const db = mysql.createConnection({
-//   host     : '127.0.0.1',
-//   user     : 'root',
-//   password : 'rnfptskfn1xnqmffkr1illipal1',
-//   database : 'hexy_questionnaire'
-// })
+const db = mysql.createConnection({
+  host     : 'billionlove.cafe24app.com',
+  user     : 'billionlove',
+  password : 'billionlove9584',
+  database : 'billionlove'
+})
 
-// db.connect()
+db.connect()
 
-db =1 
 module.exports = db;

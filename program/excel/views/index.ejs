@@ -1,0 +1,99 @@
+<style>
+    table {
+      width: 1000px;
+      border: 1px solid #444444;
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+    .flex-wrapper {
+        display: flex;
+    }
+</style>
+<div class="flex-wrapper">
+    <div class="flex-area1">
+    <form name="cls">
+        <select name="date">
+            <option value="" selected>::날짜 선택::</option> 
+            <% if(locals.date) { %>
+                <% for(let i=0; i<date.length; i++) { %>
+                    <% if(selected == date[i].date ) { %>    
+                        <option value="<%= date[i].date %>" selected><%= date[i].date %></option>
+                    <% } else { %>
+                        <option value="<%= date[i].date %>"><%= date[i].date %></option>
+                    <% } %>  
+                <% } %>
+            <% } %>  
+        </select>
+    </form>
+
+
+
+    <table>
+        <thead>
+            <th>체온</th>
+            <th>증상</th>
+            <th>기타 증상</th>
+            <th>확진 과거력</th>
+            <th>국가</th>
+            <th>입국일자</th>
+            <th>접촉 여부</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>날짜</th>
+        </thead>
+    <% let s = 0 %> 
+    <% if( locals.rows) { %> 
+        <% for(let i=0; i<rows.length; i++) { %>
+            <tbody>
+                <td><%= rows[i].temperature %> </td>
+                <td><%= rows[i].symtom %> </td>
+                <td><%= rows[i].etc_symtom %> </td>
+                <td><%= rows[i].covid %> </td>
+                <td><%= rows[i].country %> </td>
+                <td><%= rows[i].entry_date %> </td>
+                <td><%= rows[i].contact %> </td>
+                <td><%= rows[i].name %> </td>
+                <td><%= rows[i].phone %> </td>
+                <td><%= rows[i].date %></td>
+            </tbody>
+            <% s++ %> 
+        <% } %>  
+    <% } %>  
+    </table>
+    </div>
+
+    <div class="flex-area2">
+        <input class="xlsx-download" type="button" value="다운로드">
+        
+        <ul>
+            <% if(locals.filelist_reverse) { %>
+                <% for(let i=0; i<filelist_reverse.length; i++) {%>
+                    <li>
+                        <%=i+1 %>. <a href="../../excel/<%= filelist_reverse[i]%> " download=""><%=filelist_reverse[i]%></a>
+                        <b> <a href="/excel/del/<%=filelist_reverse[i]%> ">삭제</a> </b>         
+                    </li>
+                        
+                    
+                <% } %> 
+            <% } %> 
+        </ul>
+
+    </div>
+</div>
+<script>
+   
+    
+    
+    document.getElementsByName('date')[0].addEventListener('change', () =>{
+        document.cls.method="get"
+        document.cls.action="/excel"
+        document.cls.submit()
+    })
+
+    document.querySelector('.xlsx-download').addEventListener('click', () =>{
+        document.cls.method="post"
+        document.cls.action="/excel/process"
+        document.cls.submit()
+    })
+</script>

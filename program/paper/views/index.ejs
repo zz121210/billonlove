@@ -34,12 +34,15 @@
                                 현재 호흡기 증상이 있습니까? <br>
                                 (인후통, 기침, 호흡곤란)
                             </span>
-                            <div>
+                            <div class="choice">
                                 <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
                                 <span class="msg"></span>
                             </div>
-                            <div>
-                                증상 : <input type="text" name="symtom" disabled>
+                            <div class="answer">
+                                <table>
+                                    <th>증상</th>
+                                    <td><input type="text" name="symtom" disabled></td>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -55,12 +58,15 @@
                                 현재 기타 증상이 있습니까? <br>
                                 (근육통, 두통, 설사, 메스꺼움)
                             </span>
-                            <div>
+                            <div class="choice">
                                 <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
                                 <span class="msg"></span>
                             </div>
-                            <div>
-                                증상 : <input type="text" name="etc_symtom" disabled>
+                            <div class="answer">
+                                <table>
+                                <th>증상  </th>
+                                <td><input type="text" name="etc_symtom" disabled></td>
+                            </table>
                             </div>
                         </div>
                     </div>
@@ -75,12 +81,15 @@
                                 최근 4개월 이내 코로나 19 <br>
                                 확진 과거력이 있습니까?
                             </span>
-                            <div>
+                            <div class="choice">
                                 <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
                                 <span class="msg"></span>
                             </div>
-                            <div>
-                                확진일 : <input type="text" class="calender" name="covid" disabled>
+                            <div class="answer">
+                                <table>
+                                    <th>확진일  </th>
+                                    <td> <input type="text" class="calender" name="covid" disabled> </td>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -95,13 +104,21 @@
                                 본인이나 동거인 중 최근 14일 이내 <br>
                                 해외입국 사실이 있습니까?
                             </span>
-                            <div>
+                            <div class="choice">
                                 <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
                                 <span class="msg"></span>
                             </div>
-                            <div>
-                                국가 : <input type="text" name="country" disabled> <br>
-                                입국일자 : <input type="text" class="calender" name="entry_date" disabled>        
+                            <div class="answer">
+                                <table>
+                                    <tr>
+                                        <th> 국가  </th>
+                                        <td> <input type="text" name="country" disabled> </td>
+                                    </tr>
+                                    <tr>
+                                        <th> 입국일  </th>
+                                        <td> <input type="text" class="calender" name="entry_date" disabled> </td>
+                                    </tr>
+                                </table>       
                             </div>
                         </div>
                     </div>
@@ -117,7 +134,7 @@
                                 의심환자와 접촉한 사실이 있습니까?
                             </div>
                             <div>
-                                <div>
+                                <div class="choice">
                                     <input type="checkbox" name="contact" value="예" class="yes" > 예 <input type="checkbox" class="no"> 아니오
                                     <span class="msg"></span>
                                 </div>
@@ -132,13 +149,15 @@
         <div class="margin-auto">
             <div class="flex-wrapper">
                 <div class="flex-area2">
-                    <input type="checkbox" name="agreement">
+                    <input type="checkbox" class="agreement" name="agreement">
                 </div>
                 <div class="description">
+                    <div class="flex-area1">
                     코로나 확진자 발생 시 작성한 문진표와 <br>
                     수집된 개인정보 이용을 동의하고 방역팀의 <br>
                     방역지침에 적극적으로 협조할 것을 동의합니다. <br>
                     <span class="msg"></span>
+                    </div>
                 </div>
             </div>
             <div class="margin-auto">
@@ -151,9 +170,11 @@
                     </div>
                     <div class="padding-top"></div>
                     <div class="center">
-                        성명 : <input type="text" name="name"> <br>
-                        연락처 : <input type="number" maxlength="12" name="phone"  step="0.1"> <br>
-                        <input type="submit" value="제출하기" onclick="return valid()">
+                        <table>
+                        <span style="margin-right:14px;"> 성명 </span> <input type="text" name="name" style="width:177px;"> <br>
+                        연락처  <input type="number" maxlength="12" name="phone"  step="0.1"> <br>
+                        <input type="submit" class="submit" value="제출하기" onclick="return valid()">
+                        </table>
                     </div>
                 </div>
             </div>
