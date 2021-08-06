@@ -115,21 +115,15 @@ fs.readdir("./excel", (err, filelist) => {
         .string(rows[i].date)
       s++
     }
+    
+    let file_name
+    if(post.date == '') {
+      file_name = 'all'
+    } else {
+      file_name = post.date
+    }
 
-      let filename
-      filename = post.data
-      
-      
-      for(let i=0; i<filelist.length; i++){
-        if(post.data == null) {
-          filename = 'default'
-        }
-        if(filelist[i] == filename+".xlsx"){
-          wb.write(`excel/${filename}_${Math.random().toString(36).substr(2,11)}.xlsx`);
-        } else {
-          wb.write(`excel/${filename}.xlsx`);
-        }
-      }
+    wb.write(`excel/${file_name}_${Math.random().toString(36).substr(2,11)}.xlsx`);
     })
   })
 
