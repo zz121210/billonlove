@@ -4,7 +4,8 @@ const db = require('../../assets/lib/db')
 const xl = require('excel4node');
 const fs = require('fs')
 const session = require('express-session');	//세션관리용 미들웨어
-
+let dir
+dir = "/home/hosting_users/billionlove/apps/billionlove_billionlove"
 router.use(session({
   httpOnly: true,	//자바스크립트를 통해 세션 쿠키를 사용할 수 없도록 함
   secure: true,	//https 환경에서만 session 정보를 주고받도록처리
@@ -33,7 +34,7 @@ router.get("/", (req, res) => {
   if(!req.session.a) {
     res.render('../../program/login/views/index.ejs')
   }
-fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
+fs.readdir(`/home/hosting_users/billionlove/apps/billionlove_billionlove/`, (err, filelist) => {
   let dateQuery,get
   get = req.query
   if(get.date) {
@@ -54,11 +55,11 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
 
 router.get("/del/:value", (req, res) => {
   params = req.params
-  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${params.value}`, (err) => {
+  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove//${params.value}`, (err) => {
     if(err) throw err
   })
 
-  fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
+  fs.readdir(`/home/hosting_users/billionlove/apps/billionlove_billionlove/`, (err, filelist) => {
     let dateQuery,get
     get = req.query
   
@@ -76,7 +77,7 @@ router.get("/del/:value", (req, res) => {
 
 
 router.post('/process', (req, res) => {
-fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/excel", (err, filelist) => {
+fs.readdir(`/home/hosting_users/billionlove/apps/billionlove_billionlove//excel`, (err, filelist) => {
   let dateQuery,post
   post = req.body
   if(post.date) {
@@ -136,7 +137,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/e
       file_name = post.date
     }
 
-    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
+    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove//${file_name} 출입명단.xlsx`);
     })
   })
   res.redirect('/excel')
