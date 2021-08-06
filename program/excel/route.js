@@ -16,7 +16,7 @@ let style = wb.createStyle({
 
 
 router.get("/", (req, res) => {
-fs.readdir("./excel", (err, filelist) => {
+fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
   let dateQuery,get
   get = req.query
   if(get.date) {
@@ -41,11 +41,11 @@ fs.readdir("./excel", (err, filelist) => {
 
 router.get("/del/:value", (req, res) => {
   params = req.params
-  fs.unlink(`./excel/${params.value}`, (err) => {
+  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel${params.value}`, (err) => {
     if(err) throw err
   })
 
-  fs.readdir("./excel", (err, filelist) => {
+  fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
     let dateQuery,get
     get = req.query
   
@@ -63,7 +63,7 @@ router.get("/del/:value", (req, res) => {
 
 
 router.post('/process', (req, res) => {
-fs.readdir("./excel", (err, filelist) => {
+fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/excel", (err, filelist) => {
   let dateQuery,post
   post = req.body
   if(post.date) {
