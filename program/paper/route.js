@@ -11,17 +11,17 @@ router.get("/", (req, res, next) => {
 router.post("/process", async (req, res) => {
   let temperature = req.body.temperature 
   let symtom = req.body.symtom
-  if (symtom == undefined) symtom = '아니오'
+  if (symtom == undefined) symtom = '없음'
   let etc_symtom = req.body.etc_symtom
-  if (etc_symtom == undefined) etc_symtom = '아니오'
+  if (etc_symtom == undefined) etc_symtom = '없음'
   let covid = req.body.covid
-  if (covid == undefined) covid = '아니오'
+  if (covid == undefined) covid = '없음'
   let country = req.body.country
-  if (country == undefined) country = '아니오'
+  if (country == undefined) country = '없음'
   let entry_date = req.body.entry_date
-  if (entry_date == undefined) entry_date = '아니오'
+  if (entry_date == undefined) entry_date = '없음'
   let contact = req.body.contact
-  if (contact == undefined) contact = '아니오'
+  if (contact == undefined) contact = '없음'
   let name = req.body.name
   let phone = req.body.phone
   
