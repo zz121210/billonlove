@@ -41,7 +41,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
 
 router.get("/del/:value", (req, res) => {
   params = req.params
-  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel${params.value}`, (err) => {
+  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${params.value}`, (err) => {
     if(err) throw err
   })
 
