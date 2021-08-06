@@ -25,11 +25,9 @@ router.post("/process", async (req, res) => {
   let name = req.body.name
   let phone = req.body.phone
   
-  let now = new Date();	// 현재 날짜 및 시간
-  let year = now.getFullYear();	// 연도
-  let month = now.getMonth();	// 월
-  let day = now.getDate();	// 일
-  date = `${year}-${month}-${day}`
+  let dt = new Date();
+
+  date = dt.getFullYear()+ '-' + dt.getMonth().toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0') + '-' + dt.getHours().toString().padStart(2,'0')+ '-' + dt.getMinutes().toString().padStart(2,'0')
 
   db.query(`
     iNSERT INTO paper

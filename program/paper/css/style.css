@@ -88,7 +88,7 @@
 }
 
 .QRcode{
-
+    
     width: 300px;
     height: 300px;
     margin: 0 auto;
@@ -125,11 +125,18 @@ input[type="text"] {
     width: 100%;
 }
 
-table{
+input[type="number"] {
+    width: 100%;
+}
 
+table{
     width: 190px;
 }
 
 th {
     width: 40px;
+}
+
+.font {
+    font-size: 12px;
 }

@@ -14,18 +14,7 @@
 <div class="flex-wrapper">
     <div class="flex-area1">
     <form name="cls">
-        <select name="date">
-            <option value="" selected>::날짜 선택::</option> 
-            <% if(locals.date) { %>
-                <% for(let i=0; i<date.length; i++) { %>
-                    <% if(selected == date[i].date ) { %>    
-                        <option value="<%= date[i].date %>" selected><%= date[i].date %></option>
-                    <% } else { %>
-                        <option value="<%= date[i].date %>"><%= date[i].date %></option>
-                    <% } %>  
-                <% } %>
-            <% } %>  
-        </select>
+        <input type="text" class="calender" name="date" placeholder="날짜를 선택 하세요.">
     </form>
 
 
@@ -83,10 +72,9 @@
     </div>
 </div>
 <script>
-   
-    
-    
-    document.getElementsByName('date')[0].addEventListener('change', () =>{
+    flatpickr(".calender");
+
+    document.querySelector('.calender').addEventListener('change', () =>{
         document.cls.method="get"
         document.cls.action="/excel"
         document.cls.submit()

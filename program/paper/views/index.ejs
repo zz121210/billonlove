@@ -153,10 +153,13 @@
                 </div>
                 <div class="description">
                     <div class="flex-area1">
+                    <font class="font">
                     코로나 확진자 발생 시 작성한 문진표와 <br>
                     수집된 개인정보 이용을 동의하고 방역팀의 <br>
                     방역지침에 적극적으로 협조할 것을 동의합니다. <br>
+                    </font>
                     <span class="msg"></span>
+                    
                     </div>
                 </div>
             </div>
@@ -169,12 +172,22 @@
                     </div>
                     </div>
                     <div class="padding-top"></div>
-                    <div class="center">
+                    <div class="margin-auto">
+                        <div style="margin-left: 50px;">
                         <table>
-                        <span style="margin-right:14px;"> 성명 </span> <input type="text" name="name" style="width:177px;"> <br>
-                        연락처  <input type="number" maxlength="12" name="phone"  step="0.1"> <br>
-                        <input type="submit" class="submit" value="제출하기" onclick="return valid()">
+                            <tr>
+                                <th> <font size="2"> 성명 </font> </th> 
+                                <td> <input type="text" name="name"> </td>
+                            </tr>
+                            <tr>
+                                <th> <font size="2"> 연락처 </font> </th> 
+                                <td> <input type="number" maxlength="11" name="phone"  step="0.1"> </td>
+                            </tr>
                         </table>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <input type="submit" class="submit" value="제출하기" onclick="return valid()">
                     </div>
                 </div>
             </div>
@@ -186,10 +199,10 @@
 
 
 <script>
-    var now = new Date();	// 현재 날짜 및 시간
-    var year = now.getFullYear();	// 연도
-    var month = now.getMonth();	// 월
-    var day = now.getDate();	// 일
+    let dt = new Date();
+    var year = dt.getFullYear();	// 연도
+    var month = dt.getMonth().toString().padStart(2,'0');	// 월
+    var day = dt.getDate().toString().padStart(2,'0');	// 일
     
     date = `${year}년 ${month}월 ${day}월`
 

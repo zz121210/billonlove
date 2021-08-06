@@ -37,7 +37,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
   let dateQuery,get
   get = req.query
   if(get.date) {
-    dateQuery = `WHERE date = '${get.date}'`
+    dateQuery = `WHERE date LIKE '${get.date}%'`
   }
   
   db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
@@ -140,7 +140,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/e
       file_name = post.date
     }
 
-    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name}_${Math.random().toString(36).substr(2,11)}.xlsx`);
+    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name}_${Math.floor(Math.random() * 1000)}.xlsx`);
     })
   })
   res.redirect('/excel')
