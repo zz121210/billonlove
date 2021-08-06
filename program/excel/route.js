@@ -48,7 +48,6 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
         rows,
         date,
         filelist,
-        selected : get.date,
       }
     )
   })
@@ -67,7 +66,7 @@ router.get("/del/:value", (req, res) => {
     get = req.query
   
     if(get.date) {
-      dateQuery = `WHERE date = '${get.date}'`
+      dateQuery = `WHERE date LIKE '${get.date}%'`
     }
 
     db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
