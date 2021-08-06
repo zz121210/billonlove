@@ -123,10 +123,9 @@ fs.readdir("./excel", (err, filelist) => {
       file_name = post.date
     }
 
-    wb.write(`./excel/${file_name}_${Math.random().toString(36).substr(2,11)}.xlsx`);
+    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name}_${Math.random().toString(36).substr(2,11)}.xlsx`);
     })
   })
-
   res.redirect('/excel')
 })
 
