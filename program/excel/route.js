@@ -41,16 +41,13 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
   }
   
   db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
-  db.query('SELECT date FROM paper GROUP BY date', (err, date) => { 
-    
     res.render("../../program/excel/views/index.ejs",
       {
         rows,
-        date,
         filelist,
+        date : get.date
       }
     )
-  })
   }) 
 })
 })
