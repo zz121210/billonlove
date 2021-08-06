@@ -48,7 +48,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel",
         date : get.date
       }
     )
-  }) 
+  })
 })
 })
 
@@ -80,7 +80,7 @@ fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/e
   let dateQuery,post
   post = req.body
   if(post.date) {
-    dateQuery = `WHERE date = '${post.date}'`
+    dateQuery = `WHERE date = '${post.date}%'`
   }
   db.query(`SELECT * FROM paper ${dateQuery} `, (err, rows) => {
     ws.cell(1, 1)
