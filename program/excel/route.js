@@ -116,10 +116,6 @@ fs.readdir("./excel", (err, filelist) => {
       s++
     }
 
-      if(filelist.length == 0) {
-        wb.write(`excel/${post.date}.xlsx`)
-      }
-
       let filename
       filename = post.data
       
