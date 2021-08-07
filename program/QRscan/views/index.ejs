@@ -1,77 +1,37 @@
-<script src="../../../assets/lib/jsQR.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
-<link rel="stylesheet" href="../../../program/QRscan/css/style.css">
+<script 
+    src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js">
+</script>
 
-<div id="loadingMessage" hidden="">⌛ 로딩 중 입니다.</div>
-<div class="centr">
-<canvas id="canvas"></canvas>
-</div>
-<div id="output"></div>
+<div id="reader"></div>
+
+<input type="file" id="qr-input-file" accept="image/*">
+<!-- 
+  Or add captured if you only want to enable smartphone camera, PC browsers will ignore it.
+-->
+
+<input type="file" id="qr-input-file" accept="image/*" capture>
 
 <script>
-let audio = new Audio("../../../assets/audio/complete.mp3")
-let video = document.createElement("video");
-let canvasElement = document.getElementById("canvas");
-let canvas = canvasElement.getContext("2d");
-let loadingMessage = document.getElementById("loadingMessage");
+  const html5QrCode = new Html5Qrcode(/* element id */ "reader");
 
-
-let tmpActData = "";
-let tmpLastData = "";
-
-function drawPath(offset, points, color, lineWidth) {//offset={x: ,y: }, points=[p1={x: ,y: }, p2, ...]
-canvas.beginPath();
-canvas.lineWidth = lineWidth;
-canvas.strokeStyle = color;
-canvas.moveTo(points[0].x + offset.x, points[0].y + offset.y);
-for (let i=1; i<points.length; i++)
-  canvas.lineTo(points[i].x + offset.x, points[i].y + offset.y);
-canvas.stroke();
-}
-function drawRect(topLeft, size, color, lineWidth) {//({x: ,y: },{dx: ,dy: },
-canvas.beginPath();
-canvas.lineWidth = lineWidth;
-canvas.strokeStyle = color;
-canvas.rect(topLeft.x-lineWidth/2, topLeft.y-lineWidth/2
-  , size.dx+lineWidth, size.dy+lineWidth); //ramka na zewnątrz
-canvas.stroke();
-}
-
-let animFrameId;                
-// Use facingMode: environment to attemt to get the front camera on phones
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }).then(function(stream) {
-video.srcObject = stream;
-video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-video.play();
- animFrameId = requestAnimationFrame(tick);
-});
-
-function tick() {
-loadingMessage.innerText = "⌛ Loading video..."
-if (video.readyState === video.HAVE_ENOUGH_DATA) {
-  loadingMessage.hidden = true;
-  canvasElement.hidden = false;
-  canvasElement.height = video.videoHeight;
-  canvasElement.width = video.videoWidth;
-  canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-      //smaller rect for QRcode reading
-  let w=Math.min(canvasElement.width, canvasElement.height)/1.6
-    , x=(canvasElement.width - w)/2, y=(canvasElement.height - w)/2;
-  drawRect({x:x, y:y}, {dx:w, dy:w}, 'rgba(0, 255, 0, 0.4)', 4);  //Lime, alpha=0.4
-  //let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-  let imageData = canvas.getImageData(x, y, w, w);
-
-  let code = jsQR(imageData.data, imageData.width, imageData.height, {
-    inversionAttempts: "dontInvert",
-  });
-  if (code) {
-    let loc = code.location;
-    drawPath({x:x, y:y}, [loc.topLeftCorner, loc.topRightCorner, loc.bottomRightCorner
-      , loc.bottomLeftCorner, loc.topLeftCorner], "#FF3B58", 4);
-    tmpActData = code.data.replace(/\r?\n/g, '<br>');
-    audio.play()
+// File based scanning
+const fileinput = document.getElementById('qr-input-file');
+fileinput.addEventListener('change', e => {
+  if (e.target.files.length == 0) {
+    // No file selected, ignore 
+    return;
   }
-}
-requestAnimationFrame(tick);
-}
+
+  // Use the first item in the list
+  const imageFile = e.target.files[0];
+  html5QrCode.scanFile(imageFile, /* showImage= */true)
+  .then(qrCodeMessage => {
+    // success, use qrCodeMessage
+    console.log(qrCodeMessage);
+  })
+  .catch(err => {
+    // failure, handle it.
+    console.log(`Error scanning file. Reason: ${err}`)
+  });
+});
 </script>
