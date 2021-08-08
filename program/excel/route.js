@@ -55,7 +55,7 @@ fs.readdir("./excel", (err, filelist) => {
 
 router.get("/del/:value", (req, res) => {
   params = req.params
-  fs.unlink(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${params.value}`, (err) => {
+  fs.unlink(`./home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${params.value}`, (err) => {
     if(err) throw err
   })
 
@@ -77,7 +77,7 @@ router.get("/del/:value", (req, res) => {
 
 
 router.post('/process', (req, res) => {
-  fs.readdir("/home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
+  fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
     let dateQuery,post
     post = req.body
     if(post.date) {
@@ -137,7 +137,7 @@ router.post('/process', (req, res) => {
         file_name = post.date
       }
 
-    wb.write(`/home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
+    wb.write(`./home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
     })
   })
   res.redirect('/excel')
