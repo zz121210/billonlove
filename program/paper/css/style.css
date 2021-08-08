@@ -129,6 +129,10 @@ input[type="number"] {
     width: 100%;
 }
 
+input[type="date"] {
+    width: 100%;
+}
+
 table{
     width: 190px;
 }

@@ -25,6 +25,8 @@ router.post("/process", (req, res) => {
   if(post.member_id == 'billionlove' && post.member_pw == 'hattyjoey1005') {
     req.session.a = '1'
     res.redirect("/")
+  } else {
+    res.redirect("/")
   }
  
 })

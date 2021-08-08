@@ -88,7 +88,7 @@
                             <div class="answer">
                                 <table>
                                     <th>확진일  </th>
-                                    <td> <input type="text" class="calender" name="covid" disabled> </td>
+                                    <td> <input type="date" class="calender" name="covid" disabled> </td>
                                 </table>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                     </tr>
                                     <tr>
                                         <th> 입국일  </th>
-                                        <td> <input type="text" class="calender" name="entry_date" disabled> </td>
+                                        <td> <input type="date" class="calender" name="entry_date" disabled> </td>
                                     </tr>
                                 </table>       
                             </div>
@@ -209,8 +209,6 @@
     window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.date').innerText= date
     })
-
-    flatpickr(".calender");
 
     function valid() {
         if(document.getElementsByName('temperature')[0].value == '' ) {
