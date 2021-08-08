@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   if(!req.session.a) {
     res.render('../../program/login/views/index.ejs')
   }
-fs.readdir("./excel", (err, filelist) => {
+fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
   let dateQuery,get
   get = req.query
   if(get.date) {
