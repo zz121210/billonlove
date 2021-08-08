@@ -201,10 +201,10 @@
 <script>
     let dt = new Date();
     var year = dt.getFullYear();	// 연도
-    var month = dt.getMonth().toString().padStart(2,'0');	// 월
+    var month = (dt.getMonth()+1).toString().padStart(2,'0');	// 월
     var day = dt.getDate().toString().padStart(2,'0');	// 일
     
-    date = `${year}년 ${month}월 ${day}월`
+    date = `${year}년 ${month}월 ${day}일`
 
     window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.date').innerText= date
@@ -395,5 +395,6 @@
             
             document.getElementsByClassName('msg')[6].innerText = ''
     })
+    document.querySelector("body").style.background ="white"
 
 </script>

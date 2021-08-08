@@ -1,76 +1,66 @@
-<style>
-    table {
-      width: 1000px;
-      border: 1px solid #444444;
-    }
-    th, td {
-      border: 1px solid #444444;
-      text-align: center;
-    }
-    .flex-wrapper {
-        display: flex;
-    }
-</style>
-<div class="flex-wrapper">
-    <div class="flex-area1">
-        <form name="cls">
-            <% if(locals.dateValue) { %>
-                <input type="text" value="<%=dateValue%>" class="calender" name="date" placeholder="날짜를 선택 하세요.">
-            <% } else { %>
-                <input type="text" class="calender" name="date" placeholder="날짜를 선택 하세요.">
-            <% } %>   
-        </form>
+<link rel="stylesheet" href="../../program/excel/css/style.css">
 
-    <table>
-        <thead>
-            <th>체온</th>
-            <th>증상</th>
-            <th>기타 증상</th>
-            <th>확진 과거력</th>
-            <th>국가</th>
-            <th>입국일자</th>
-            <th>접촉 여부</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>날짜</th>
-        </thead>
-    <% let s = 0 %> 
-    <% if( locals.rows) { %> 
-        <% for(let i=0; i<rows.length; i++) { %>
-            <tbody>
-                <td><%= rows[i].temperature %> </td>
-                <td><%= rows[i].symtom %> </td>
-                <td><%= rows[i].etc_symtom %> </td>
-                <td><%= rows[i].covid %> </td>
-                <td><%= rows[i].country %> </td>
-                <td><%= rows[i].entry_date %> </td>
-                <td><%= rows[i].contact %> </td>
-                <td><%= rows[i].name %> </td>
-                <td><%= rows[i].phone %> </td>
-                <td><%= rows[i].date %></td>
-            </tbody>
-            <% s++ %> 
+<div class="wrapper">
+    <div class="flex-wrapper">
+        <div class="flex-area1">
+            <div class="table-nav">
+                <form name="cls">
+                    <% if(locals.dateValue) { %>
+                        <input type="text" value="<%=dateValue%>" class="calender" name="date" placeholder="날짜를 선택 하세요.">
+                    <% } else { %>
+                        <input type="text" class="calender" name="date" placeholder="날짜를 선택 하세요.">
+                    <% } %>   
+                </form>
+
+                <input class="xlsx-download" type="button" value="저장하기">
+            </div>
+        <table>
+            <thead>
+                <th>체온</th>
+                <th>증상</th>
+                <th>기타 증상</th>
+                <th>확진 과거력</th>
+                <th>국가</th>
+                <th>입국일자</th>
+                <th>접촉 여부</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>날짜</th>
+            </thead>
+        <% let s = 0 %> 
+        <% if( locals.rows) { %> 
+            <% for(let i=0; i<rows.length; i++) { %>
+                <tbody>
+                    <td><%= rows[i].temperature %> </td>
+                    <td><%= rows[i].symtom %> </td>
+                    <td><%= rows[i].etc_symtom %> </td>
+                    <td><%= rows[i].covid %> </td>
+                    <td><%= rows[i].country %> </td>
+                    <td><%= rows[i].entry_date %> </td>
+                    <td><%= rows[i].contact %> </td>
+                    <td><%= rows[i].name %> </td>
+                    <td><%= rows[i].phone %> </td>
+                    <td><%= rows[i].date %></td>
+                </tbody>
+                <% s++ %> 
+            <% } %>  
         <% } %>  
-    <% } %>  
-    </table>
-    </div>
+        </table>
 
-    <div class="flex-area2">
-        <input class="xlsx-download" type="button" value="저장">
-        
-        <ul>
-            <% if(locals.filelist) { %>
-                <% for(let i=0; i<filelist.length; i++) {%>
-                    <li>
-                        <%=i+1 %>. <a href="../../excel/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
-                        <b> <a href="/excel/del/<%=filelist[i]%> ">삭제</a> </b>         
-                    </li>
-                        
-                    
+        </div>
+
+        <div class="flex-area2">
+            <ul class="excel-list">
+                <% if(locals.filelist) { %>
+                    <% for(let i=0; i<filelist.length; i++) {%>
+                        <li>
+                            <%=i+1 %>. <a href="../../excel/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
+                            <b> <a href="/excel/del/<%=filelist[i]%> ">삭제</a> </b>         
+                        </li>
+                    <% } %> 
                 <% } %> 
-            <% } %> 
-        </ul>
-
+            </ul>
+        </div>
     </div>
 </div>
 <script>
@@ -85,6 +75,12 @@
     document.querySelector('.xlsx-download').addEventListener('click', () =>{
         document.cls.method="post"
         document.cls.action="/excel/process"
+        document.cls.submit()
+    })
+
+    document.querySelector('.page').addEventListener('click', () =>{
+        document.cls.method="get"
+        document.cls.action="/excel"
         document.cls.submit()
     })
 </script>

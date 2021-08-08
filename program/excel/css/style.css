@@ -1,0 +1,49 @@
+.wrapper{
+    width: 1500px;
+    margin: auto;
+}
+
+.flex-wrapper {
+    display: flex;
+    justify-content: center;
+    padding:10px;
+    
+}
+
+.table-nav {
+    display:flex;
+
+}
+
+.xlsx-download {
+    margin-left: auto;
+}
+
+table {
+    margin-top: 10px;
+    width: 1000px;
+    border: 1px solid #444444;
+}
+th, td {
+    border: 1px solid #444444;
+    text-align: center;
+}
+
+.flex-area1 {
+    
+    background-color: #fafafa;
+    padding: 20px;
+}
+
+.flex-area2 {
+    
+    background-color: #fafafa;
+    margin-left: 40px;
+    padding: 20px;
+    width: 300px;
+}
+
+.excel-list>li {
+    border-bottom: 1px solid;
+    margin-top : 5px;
+}

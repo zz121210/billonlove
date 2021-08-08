@@ -1,5 +1,26 @@
-<form action="/login/process" method="post">
-    아이디 : <input name="member_id" type="text"> <br>
-    비밀번호 : <input name="member_pw" type="password">
-    <input type="submit">
-</form>
+<link rel="stylesheet" href="../../program/login/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+
+<div class="container">
+  <h1 class="title">billion love</h1>
+  <h1 class="login-title"><b> LOGIN </b></h1>
+    <form action="/login/process" method="post">
+      <div class="group">      
+        <input type="text" name="member_id" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+          <label>ID</label>
+      </div>
+    
+      <div class="group">      
+        <input type="password" name="member_pw" required>
+        <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>PW</label>
+      </div>
+            
+            <input type="submit" value="Login">  
+    </form>
+</div>

@@ -27,7 +27,7 @@ router.post("/process", async (req, res) => {
   
   let dt = new Date();
 
-  date = dt.getFullYear()+ '-' + dt.getMonth().toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0') + '-' + dt.getHours().toString().padStart(2,'0')+ '-' + dt.getMinutes().toString().padStart(2,'0')
+  date = dt.getFullYear()+ '-' + (dt.getMonth()+1).toString().padStart(2,'0') + '-' + dt.getDate().toString().padStart(2,'0') + '-' + dt.getHours().toString().padStart(2,'0')+ '-' + dt.getMinutes().toString().padStart(2,'0')
 
   db.query(`
     iNSERT INTO paper
