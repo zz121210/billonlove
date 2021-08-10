@@ -16,21 +16,24 @@
             </div>
         <table>
             <thead>
+                <th>날짜</th>
+                <th>이름</th>
+                <th>전화번호</th>
                 <th>체온</th>
                 <th>증상</th>
                 <th>기타 증상</th>
-                <th>확진 과거력</th>
+                <th>과거력</th>
                 <th>국가</th>
                 <th>입국일자</th>
-                <th>접촉 여부</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>날짜</th>
+                <th>접촉여부</th>
             </thead>
         <% let s = 0 %> 
         <% if( locals.rows) { %> 
             <% for(let i=0; i<rows.length; i++) { %>
                 <tbody>
+                    <td><%= rows[i].date %></td>
+                    <td><%= rows[i].name %> </td>
+                    <td><%= rows[i].phone %> </td>
                     <td><%= rows[i].temperature %> </td>
                     <td><%= rows[i].symtom %> </td>
                     <td><%= rows[i].etc_symtom %> </td>
@@ -38,9 +41,6 @@
                     <td><%= rows[i].country %> </td>
                     <td><%= rows[i].entry_date %> </td>
                     <td><%= rows[i].contact %> </td>
-                    <td><%= rows[i].name %> </td>
-                    <td><%= rows[i].phone %> </td>
-                    <td><%= rows[i].date %></td>
                 </tbody>
                 <% s++ %> 
             <% } %>  
