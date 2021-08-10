@@ -34,13 +34,12 @@ app.set("layout extractScript", true)
 app.use(expressLayouts)
 
 app.get('/', (req, res) => {
-  // if(req.session.a) {
-  //   res.render('../../program/home/views/index.ejs')
-  // } else {
-  //   res.render('../../program/login/views/index.ejs')
-  // }
+  if(req.session.a) {
+    res.render('../../program/home/views/index.ejs')
+  } else {
+    res.render('../../program/login/views/index.ejs')
+  }
 
-  res.render('../../program/home/views/index.ejs')
 })
 
 // login
