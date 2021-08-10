@@ -4,14 +4,14 @@
     <div class="flex-wrapper">
         <div class="flex-area1">
             <div class="table-nav">
-                <form name="cls">
+                <form name="cls" action="/excel/<%= page %> ">
                     <% if(locals.dateValue) { %>
                         <input type="text" value="<%=dateValue%>" class="calender" name="date" placeholder="날짜를 선택 하세요.">
                     <% } else { %>
                         <input type="text" class="calender" name="date" placeholder="날짜를 선택 하세요.">
                     <% } %>   
                 </form>
-
+                
                 <input class="xlsx-download" type="button" value="저장하기">
             </div>
         <table>
@@ -46,7 +46,13 @@
             <% } %>  
         <% } %>  
         </table>
-
+            <div class="page-nation">
+                <% if(locals.maxPage) { %>
+                    <% for(let i=1; i<=maxPage; i++) { %>
+                        <a href="/excel/<%=i%><%=dateSelect%>"><%=i %> </a>
+                    <% } %> 
+                <% } %>
+            </div>  
         </div>
 
         <div class="flex-area2">
@@ -55,7 +61,7 @@
                     <% for(let i=0; i<filelist.length; i++) {%>
                         <li>
                             <%=i+1 %>. <a href="../../excel/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
-                            <b> <a href="/excel/del/<%=filelist[i]%> ">삭제</a> </b>         
+                            <b> <a href="/excel/del/<%=filelist[i]%>">삭제</a> </b>         
                         </li>
                     <% } %> 
                 <% } %> 
@@ -65,10 +71,14 @@
 </div>
 <script>
     flatpickr(".calender");
+    let str,selectDate
+
+    str = window.location.href 
+    console.log(window.location.href)
+
 
     document.querySelector('.calender').addEventListener('change', () =>{
         document.cls.method="get"
-        document.cls.action="/excel"
         document.cls.submit()
     })
 
@@ -78,9 +88,5 @@
         document.cls.submit()
     })
 
-    document.querySelector('.page').addEventListener('click', () =>{
-        document.cls.method="get"
-        document.cls.action="/excel"
-        document.cls.submit()
-    })
+
 </script>
