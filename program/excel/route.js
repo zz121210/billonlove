@@ -31,9 +31,9 @@ let style = wb.createStyle({
 let params,page,maxView
 
 router.get("/:page", (req, res) => {
-  if(!req.session.a) {
-    res.render('../../program/login/views/index.ejs')
-  }
+  // if(!req.session.a) {
+  //   res.render('../../program/login/views/index.ejs')
+  // }
 fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
   let dateQuery,get,dateSelect
   get = req.query
@@ -48,12 +48,16 @@ fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel"
   }
 
   params = req.params
-  page = params.page
+  page = params.page-1
   maxView = `${page*30}`,
 
+
+
   db.query(`SELECT * FROM paper ${dateQuery}`, (err, row) => {
-    maxPage = Math.floor(row.length/30)
+    maxPage = Math.ceil(row.length/30)
+
   db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc LIMIT ${maxView},30 `, (err, rows) => {
+    console.log(`SELECT * FROM paper ${dateQuery} ORDER BY date desc LIMIT ${maxView},30 `);
     res.render("../../program/excel/views/index.ejs",
       {
         rows,
@@ -156,7 +160,7 @@ router.post('/process', (req, res) => {
     wb.write(`./home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
     })
   })
-  res.redirect('/excel')
+  res.redirect('/excel/1')
 })
 
 
