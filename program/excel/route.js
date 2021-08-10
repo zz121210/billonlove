@@ -31,9 +31,9 @@ let style = wb.createStyle({
 let params,page,maxView
 
 router.get("/:page", (req, res) => {
-  // if(!req.session.a) {
-  //   res.render('../../program/login/views/index.ejs')
-  // }
+  if(!req.session.a) {
+    res.render('../../program/login/views/index.ejs')
+  }
 fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
   let dateQuery,get,dateSelect
   get = req.query
