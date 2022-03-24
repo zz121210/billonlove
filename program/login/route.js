@@ -22,13 +22,27 @@ router.get("/", (req, res) => {
 
 router.post("/process", (req, res) => {
   post = req.body
-  if(post.member_id == 'billionlove' && post.member_pw == 'hattyjoey1005') {
-    req.session.a = '1'
-    res.redirect("/")
-  } else {
-    res.redirect("/")
-  }
- 
+  member_id = post.member_id
+  member_pw = post.member_pw
+  db.query(`SELECT * FROM hexy_member_account WHERE member_id = ? AND member_pw = ?`,[member_id, member_pw], (err, row) => {
+    if(row[0] != undefined) {
+      req.session.member = 
+      {
+        member_id : member_id
+      }
+      res.redirect("/")
+    } else {
+      res.render("../../program/login/views/index.ejs", 
+      {
+        msg : '잘못된 이메일(아이디) 또는 비밀번호 입니다.'
+      })
+    }
+  })
+})
+
+router.get('/logout', (req, res) => {
+  req.session.destroy( (err) => { if(err) throw err})
+  res.redirect("/")
 })
 
 module.exports = router;

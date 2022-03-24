@@ -1,0 +1,492 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../program/paper/css/style.css">
+<form action="/paper/process" method="post">
+
+<div class="wrapper">
+    <div class="container">
+        <div class="title">
+            건강상태확인 전자문진표
+        </div>
+        <ul class="paper">
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항1</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 체온을 적어주세요
+                            </span>
+                            <div>
+                                <input type="number" name="temperature"  step="0.1">
+                                <div class="msg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항2</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 호흡기 증상이 있습니까? <br>
+                                (인후통, 기침, 호흡곤란)
+                            </span>
+                            <div class="choice">
+                                <input type="checkbox" id="q2y" class="yes">
+                                <label for="q2y"> 예 </label>
+                                <input type="checkbox" id="q2n" class="no"> 
+                                <label for="q2n"> 아니오 </label>
+                                <span class="msg"></span>
+                            </div>
+                            <div class="answer">
+                                <table>
+                                    <th>증상</th>
+                                    <td><input type="text" name="symtom" disabled></td>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항3</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                현재 기타 증상이 있습니까? <br>
+                                (근육통, 두통, 설사, 메스꺼움)
+                            </span>
+                            <div class="choice">
+                                <input type="checkbox" id="q3y" class="yes"> 
+                                <label for="q3y"> 예 </label>
+                                <input type="checkbox" id="q3n" class="no"> 
+                                <label for="q3n"> 아니오 </label>
+                                <span class="msg"></span>
+                            </div>
+                            <div class="answer">
+                                <table>
+                                <th>증상  </th>
+                                <td><input type="text" name="etc_symtom" disabled></td>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항4</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                최근 4개월 이내 코로나 19 <br>
+                                확진 과거력이 있습니까?
+                            </span>
+                            <div class="choice">
+                                <input type="checkbox" class="yes" id="q4y"> 
+                                <label for="q4y">예</label> 
+                                <input type="checkbox" class="no" id="q4n"> 
+                                <label for="q4n">아니오</label> 
+                                <span class="msg"></span>
+                            </div>
+                            <div class="answer">
+                                <table>
+                                    <th>확진일  </th>
+                                    <td> <input type="date" class="calender" name="covid" disabled> </td>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항5</span>
+                        <div class="flex-area1">
+                            <span class="description">
+                                본인이나 동거인 중 최근 14일 이내 <br>
+                                해외입국 사실이 있습니까?
+                            </span>
+                            <div class="choice">
+                                <input type="checkbox" class="yes" id="q5y"> 
+                                <label for="q5y">예</label>   
+                                <input type="checkbox" class="no" id="q5y"> 
+                                <label for="q5y">아니오</label>
+                                <span class="msg"></span>
+                            </div>
+                            <div class="answer">
+                                <table>
+                                    <tr>
+                                        <th> 국가  </th>
+                                        <td> <input type="text" name="country" disabled> </td>
+                                    </tr>
+                                    <tr>
+                                        <th> 입국일  </th>
+                                        <td> <input type="date" class="calender" name="entry_date" disabled> </td>
+                                    </tr>
+                                </table>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="flex-wrapper">
+                        <span class="question">문항6</span>
+                        <div class="flex-area1">
+                            <div class="description">
+                                최근 14일 이내 지인 중 코로나 19 <br>
+                                의심환자와 접촉한 사실이 있습니까?
+                            </div>
+                            <div>
+                                <div class="choice">
+                                    <input type="checkbox" name="contact" value="예" id="q6y" class="yes">
+                                    <label for="q6y">예</label> 
+                                    <input type="checkbox" id="q6n" class="no"> 
+                                    <label for="q6n">아니오</label>
+                                    <span class="msg"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="wrapper1">
+                        <span class="question1"><font size="3"> 보안서약서 </font></span>
+                        <div class="flex-area1">
+                            <div class="description1">
+                                촬영장 입장 시, 제작물의 외부 유출을 방지하기 위해 <br>
+                                보안서약서를 작성하며, 위반으로 인한 법적 문제 발생시 <br>
+                                해당 서약서가 법적 효력이 있음을 동의합니다.<br>
+                                <br>
+                                아래 보안서약서를 필수로 확인하고<br>
+                                동의 여부를 체크하시기 바랍니다.<br>                                
+                            </div>
+
+                            <div>
+                                <input type="button" class="button" value="[필수] 보안서약서 확인하기">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice">
+                        <input type="checkbox" id="agr1" class="agreement1" name="agreement1"> 
+                        <label for="agr1">동의합니다</label> 
+                        <div class="msg1"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="margin-auto">
+                    <div class="wrapper1">
+                        <span class="question2"><font size="3"> 개인정보동의서 </font></span>
+                        <div class="flex-area1">
+                            <div class="description1">
+                                코로나 확진자 발생 시 작성한 문진표와 <br>
+                                수집된 개인정보 이용을 동의하고 방역팀의 <br>
+                                방역지침에 적극적으로 협조할 것을 동의합니다. <br>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice">
+                        <input type="checkbox" id="agr2" class="agreement1" name="agreement1"> 
+                        <label for="agr2"> 동의합니다 </label>
+                        <div class="msg1"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="padding-top"></div>
+        <div class="margin-auto">
+            <div class="margin-auto">
+                <div class="area">
+                    <div class="padding-top"></div>
+                    <div class="center">
+                    <div class="date">
+                        <span class="year"></span>년 <span class="month"></span>월 <span class="day"></span>일
+                    </div>
+                    </div>
+                    <div class="padding-top"></div>
+                    <div class="margin-auto">
+                        <div style="margin-left: 50px;">
+                        <table>
+                            <tr>
+                                <th> <font size="2"> 성명 </font> </th> 
+                                <td> <input type="text" name="name"> </td>
+                            </tr>
+                            <tr>
+                                <th> <font size="2"> 연락처 </font> </th> 
+                                <td> <input type="number" maxlength="11" name="phone"  step="0.1"> </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <input type="submit" class="submit" value="제출하기" onclick="return valid()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+    
+
+<div class="popup off">
+    <div class="container">
+        <h1> 보안서약서</h1>
+        <%- description %>
+        <br>
+        <input type="button" class="close" value="닫기">
+    </div>
+</div>
+
+
+<script>
+    let member_id, dt, year, month, day, viewState
+    dt = new Date();
+    year = dt.getFullYear();	// 연도
+    month = (dt.getMonth()+1).toString().padStart(2,'0');	// 월
+    day = dt.getDate().toString().padStart(2,'0');	// 일
+    viewState = 0;
+    
+    date = `${year}년 ${month}월 ${day}일`
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.date').innerText= date
+    })
+
+    function valid() {
+        if(document.getElementsByName('temperature')[0].value == '' ) {
+            document.getElementsByName('temperature')[0].focus()
+            document.getElementsByClassName('msg')[0].innerText = '필수 항목 입니다.'
+            return false
+        }
+
+        if(document.getElementsByClassName('yes')[0].checked == false 
+        && document.getElementsByClassName('no')[0].checked == false) {
+            document.getElementsByClassName('yes')[0].focus()
+            document.getElementsByClassName('msg')[1].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByClassName('yes')[0].checked == true 
+        && document.getElementsByName('symtom')[0].value == '' ) {
+            document.getElementsByName('symtom')[0].focus()
+            return false
+        }
+        
+        if(document.getElementsByClassName('yes')[1].checked == false 
+        && document.getElementsByClassName('no')[1].checked == false) {
+            document.getElementsByClassName('yes')[1].focus()
+            document.getElementsByClassName('msg')[2].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByClassName('yes')[1].checked == true 
+        && document.getElementsByName('etc_symtom')[0].value == '' ) {
+            document.getElementsByName('etc_symtom')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByClassName('yes')[2].checked == false 
+        && document.getElementsByClassName('no')[2].checked == false) {
+            document.getElementsByClassName('yes')[2].focus()
+            document.getElementsByClassName('msg')[3].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByClassName('yes')[2].checked == true 
+        && document.getElementsByName('covid')[0].value == '' ) {
+            document.getElementsByName('covid')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByClassName('yes')[3].checked == false 
+        && document.getElementsByClassName('no')[3].checked == false) {
+            document.getElementsByClassName('yes')[3].focus()
+            document.getElementsByClassName('msg')[4].innerText = '필수 항목 입니다.'
+            return false
+        }
+        if(document.getElementsByClassName('yes')[3].checked == true 
+        && document.getElementsByName('country')[0].value == '' ) {
+            document.getElementsByName('country')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByClassName('yes')[3].checked == true 
+        && document.getElementsByName('entry_date')[0].value == '' ) {
+            document.getElementsByName('entry_date')[0].focus()
+            return false
+        }
+
+        if(document.getElementsByClassName('yes')[4].checked == false
+        && document.getElementsByClassName('no')[4].checked == false) {
+            document.getElementsByClassName('msg')[5].innerText = '필수 항목 입니다.'
+            return false
+        }
+
+        if(document.getElementsByName('agreement1')[0].checked == false) {
+            document.getElementsByClassName('msg1')[0].innerText = '필수 항목 입니다.'
+            return false
+        } 
+
+        if(viewState == 0) {
+            document.getElementsByClassName('msg1')[0].innerText = '보안서약서를 확인해야 합니다.'
+            return false
+        }
+
+        if(document.getElementsByName('agreement1')[1].checked == false) {
+            document.getElementsByClassName('msg1')[1].innerText = '필수 항목 입니다.'
+            return false
+        } 
+
+
+        if(document.getElementsByName('name')[0].value == "") {
+            document.getElementsByName('name')[0].focus()
+            return false
+        }
+        
+        if(document.getElementsByName('phone')[0].value == "") {
+            document.getElementsByName('phone')[0].focus()
+            return false
+        }
+    }
+
+    document.getElementsByName('temperature')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[0].innerText = ''
+    })
+    
+    document.getElementsByClassName('yes')[0].addEventListener('click', () => {
+            document.getElementsByClassName('no')[0].checked = false
+            document.getElementsByName('symtom')[0].disabled = false
+            if( document.getElementsByClassName('yes')[0].checked == false ) {
+                document.getElementsByName('symtom')[0].disabled = true
+                document.getElementsByName('symtom')[0].value = ''
+            }
+    })
+    document.getElementsByClassName('no')[0].addEventListener('click', () => {
+            document.getElementsByClassName('yes')[0].checked = false
+            document.getElementsByName('symtom')[0].disabled = true
+            document.getElementsByName('symtom')[0].value = ''
+            document.getElementsByClassName('msg')[1].innerText = ''
+    })
+    document.getElementsByName('symtom')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[1].innerText = ''
+    })
+    
+
+    document.getElementsByClassName('yes')[1].addEventListener('click', () => {
+            document.getElementsByClassName('no')[1].checked = false
+            document.getElementsByName('etc_symtom')[0].disabled = false
+            if( document.getElementsByClassName('yes')[1].checked == false ) {
+                document.getElementsByName('etc_symtom')[0].disabled = true
+                document.getElementsByName('etc_symtom')[0].value = ''
+            }
+    })
+    document.getElementsByClassName('no')[1].addEventListener('click', () => {
+            document.getElementsByClassName('yes')[1].checked = false
+            document.getElementsByName('etc_symtom')[0].disabled = true
+            document.getElementsByName('etc_symtom')[0].value = ''
+            document.getElementsByClassName('msg')[2].innerText = ''
+    })
+    document.getElementsByName('etc_symtom')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[2].innerText = ''
+    })
+
+
+    document.getElementsByClassName('yes')[2].addEventListener('click', () => {
+            document.getElementsByClassName('no')[2].checked = false
+            document.getElementsByName('covid')[0].disabled = false
+            if( document.getElementsByClassName('yes')[2].checked == false ) {
+                document.getElementsByName('covid')[0].disabled = true
+                document.getElementsByName('covid')[0].value = ''
+            }
+    })
+    document.getElementsByClassName('no')[2].addEventListener('click', () => {
+            document.getElementsByClassName('yes')[2].checked = false
+            document.getElementsByName('covid')[0].disabled = true
+            document.getElementsByName('covid')[0].value = null
+            document.getElementsByClassName('msg')[3].innerText = ''
+    })
+    document.getElementsByName('covid')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[3].innerText = ''
+    })
+
+
+    document.getElementsByClassName('yes')[3].addEventListener('click', () => {
+            document.getElementsByClassName('no')[3].checked = false
+            document.getElementsByName('country')[0].disabled = false
+            document.getElementsByName('entry_date')[0].disabled = false
+            if( document.getElementsByClassName('yes')[3].checked == false ) {
+                document.getElementsByName('country')[0].disabled = true
+                document.getElementsByName('entry_date')[0].disabled = true
+                document.getElementsByName('country')[0].value = ''
+                document.getElementsByName('entry_date')[0].value = ''
+            }
+    })
+    document.getElementsByClassName('no')[3].addEventListener('click', () => {
+            document.getElementsByClassName('yes')[3].checked = false
+            document.getElementsByName('country')[0].disabled = true
+            document.getElementsByName('entry_date')[0].disabled = true
+            document.getElementsByName('country')[0].value = null
+            document.getElementsByName('entry_date')[0].value = null
+            document.getElementsByClassName('msg')[4].innerText = ''
+    })
+    document.getElementsByName('country')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[4].innerText = ''
+    })
+    document.getElementsByName('entry_date')[0].addEventListener('change', () => {
+        document.getElementsByClassName('msg')[4].innerText = ''
+    })
+
+    document.getElementsByClassName('yes')[4].addEventListener('click', () => {
+            document.getElementsByClassName('no')[4].checked = false
+            document.getElementsByClassName('msg')[5].innerText = ''
+    })
+    document.getElementsByClassName('no')[4].addEventListener('click', () => {
+            document.getElementsByClassName('yes')[4].checked = false
+            document.getElementsByClassName('msg')[5].innerText = ''
+    })
+    
+    document.getElementsByName('agreement1')[0].addEventListener('click', () => {
+            document.getElementsByClassName('msg1')[0].innerText = ''
+    })
+
+    
+    document.querySelector('.button').addEventListener('click', () => {
+            document.getElementsByClassName('msg1')[0].innerText = ''
+    })
+
+    document.getElementsByName('agreement1')[1].addEventListener('click', () => {
+            document.getElementsByClassName('msg1')[1].innerText = ''
+    })
+    document.querySelector("body").style.background ="white"
+
+
+    member_id = window.location.href.split('member_id=')[1].replaceAll("\"", "");
+
+    document.querySelector('.button').addEventListener('click', () => {
+        try {
+            viewState = 1
+            document.querySelector('.popup').setAttribute('class', 'popup on')
+            document.querySelector('.button').style.background="#4e4e4e"
+        } catch {
+            viewState = 1
+            document.querySelector('.popup').setAttribute('class', 'popup on')
+            document.querySelector('.button').style.background="#4e4e4e"
+        }
+    })
+
+    document.querySelector('.close').addEventListener('click', () => {
+        document.querySelector('.popup').setAttribute('class', 'popup off')
+    })
+
+</script>

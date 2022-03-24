@@ -35,7 +35,10 @@
                                 (인후통, 기침, 호흡곤란)
                             </span>
                             <div class="choice">
-                                <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
+                                <input type="checkbox" id="q2y" class="yes"> 
+                                <label for="q2y">예</label>  
+                                <input type="checkbox" id="q2n" class="no"> 
+                                <label for="q2n">아니오</label>  
                                 <span class="msg"></span>
                             </div>
                             <div class="answer">
@@ -59,7 +62,10 @@
                                 (근육통, 두통, 설사, 메스꺼움)
                             </span>
                             <div class="choice">
-                                <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
+                                <input type="checkbox" id="q3y" class="yes"> 
+                                <label for="q3y">예</label>  
+                                <input type="checkbox" id="q3n" class="no"> 
+                                <label for="q3n">아니오</label>  
                                 <span class="msg"></span>
                             </div>
                             <div class="answer">
@@ -82,7 +88,10 @@
                                 확진 과거력이 있습니까?
                             </span>
                             <div class="choice">
-                                <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
+                                <input type="checkbox" id="q4y" class="yes"> 
+                                <label for="q4y">예</label>  
+                                <input type="checkbox" id="q4n" class="no"> 
+                                <label for="q4n">아니오</label>  
                                 <span class="msg"></span>
                             </div>
                             <div class="answer">
@@ -105,7 +114,10 @@
                                 해외입국 사실이 있습니까?
                             </span>
                             <div class="choice">
-                                <input type="checkbox" class="yes"> 예 <input type="checkbox" class="no"> 아니오
+                                <input type="checkbox" id="q5y" class="yes"> 
+                                <label for="q5y">예</label>  
+                                <input type="checkbox" id="q5n" class="no"> 
+                                <label for="q5n">아니오</label>  
                                 <span class="msg"></span>
                             </div>
                             <div class="answer">
@@ -135,7 +147,10 @@
                             </div>
                             <div>
                                 <div class="choice">
-                                    <input type="checkbox" name="contact" value="예" class="yes" > 예 <input type="checkbox" class="no"> 아니오
+                                    <input type="checkbox" id="q6y" class="yes"> 
+                                    <label for="q6y">예</label>  
+                                    <input type="checkbox" id="q6n" class="no"> 
+                                    <label for="q6n">아니오</label>  
                                     <span class="msg"></span>
                                 </div>
                             </div>
@@ -143,26 +158,27 @@
                     </div>
                 </div>
             </li>
-        </ul>
-
-        <div class="padding-top"></div>
-        <div class="margin-auto">
-            <div class="flex-wrapper">
-                <div class="flex-area2">
-                    <input type="checkbox" class="agreement" name="agreement">
-                </div>
-                <div class="description">
-                    <div class="flex-area1">
-                    <font class="font">
-                    코로나 확진자 발생 시 작성한 문진표와 <br>
-                    수집된 개인정보 이용을 동의하고 방역팀의 <br>
-                    방역지침에 적극적으로 협조할 것을 동의합니다. <br>
-                    </font>
-                    <span class="msg"></span>
-                    
+            <li>
+                <div class="margin-auto">
+                    <div class="wrapper1">
+                        <span class="question2"><font size="3"> 개인정보동의서 </font></span>
+                        <div class="flex-area1">
+                            <div class="description1">
+                                코로나 확진자 발생 시 작성한 문진표와 <br>
+                                수집된 개인정보 이용을 동의하고 방역팀의 <br>
+                                방역지침에 적극적으로 협조할 것을 동의합니다. <br>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice">
+                        <input type="checkbox" id="agr1" class="agreement1" name="agreement1"> 
+                        <label for="agr1">동의합니다</label> 
+                        <div class="msg1"></div>
                     </div>
                 </div>
-            </div>
+            </li>
+        </ul>
+
             <div class="margin-auto">
                 <div class="area">
                     <div class="padding-top"></div>
@@ -277,8 +293,8 @@
             return false
         }
 
-        if(document.getElementsByName('agreement')[0].checked == false) {
-            document.getElementsByClassName('msg')[6].innerText = '필수 항목 입니다.'
+        if(document.getElementsByName('agreement1')[0].checked == false) {
+            document.getElementsByClassName('msg1')[0].innerText = '필수 항목 입니다.'
             return false
         } 
 
@@ -389,9 +405,9 @@
             document.getElementsByClassName('msg')[5].innerText = ''
     })
     
-    document.getElementsByName('agreement')[0].addEventListener('click', () => {
+    document.getElementsByName('agreement1')[0].addEventListener('click', () => {
             
-            document.getElementsByClassName('msg')[6].innerText = ''
+            document.getElementsByClassName('msg1')[0].innerText = ''
     })
     document.querySelector("body").style.background ="white"
 

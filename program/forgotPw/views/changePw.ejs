@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="../../program/signUp/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<div class="margin-top"></div>
+<a href="/"> <h1 class="logo">billion love </h1></a>
+<div class="row">
+  <div class="col-md-12">
+    <form action="/forgotPw/changePw" method="post" onsubmit="return submitChk()">
+      <h1 class="login-title"><b> 비밀번호 변경 </b></h1>
+      <input type="hidden" name="hexy_member_code" value="<%=hexy_member_code%>">   
+      <fieldset>
+        <label for="password">비밀번호 </label>
+        <input type="password" id="password" name="member_pw" minlength="8" required>
+
+        <label for="re-password">비밀번호 확인 
+            <font class="pwMsg" color="red">
+            </font>
+        </label>
+        <input type="password" id="re-password" minlength="8" required>
+      </fieldset>
+
+      <input type="submit" value="비밀번호 변경">
+    </form>
+  </div>
+</div>
+      
+<script>
+
+      submitChk = () => {
+        if ( pwStatus == 1) {
+            document.querySelector('#re-password').focus()
+            return false
+        }
+      }
+
+      document.querySelector('#re-password').addEventListener('change', ()=>{
+        if(document.querySelector('#password').value != document.querySelector('#re-password').value) {
+            document.querySelector('.pwMsg').innerHTML = '비밀번호가 일치하지 않습니다. ';
+            pwStatus = 1
+        }else{
+            document.querySelector('.pwMsg').innerHTML = null;
+            pwStatus = 0
+        }
+      })
+      
+  </script>

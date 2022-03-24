@@ -1,0 +1,26 @@
+<script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+<script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
+<link rel="stylesheet" href="../../program/paper/css/update.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+<a href="/"> <h1 class="logo">billion love </h1></a>
+<div class="row">
+  <div class="col-md-12">
+    <form action="/paper/update" method="post" onsubmit="return submitChk()">
+      <h1 class="login-title"><b> 보안서약서 </b></h1>
+      
+      <fieldset>
+
+        <input type="hidden" name="member_id" value="<%=member_id%>">
+        <textarea name="description" cols="30" rows="10"><%=description%></textarea>
+
+      <input type="submit" value="수정하기">
+    </fieldset>
+      
+     </form>
+<script>
+  var editor = new Editor();
+editor.render();
+</script>

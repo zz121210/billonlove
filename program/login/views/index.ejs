@@ -3,24 +3,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 
+<div class="margin-top"></div>
+<a href="/"> <h1 class="logo">billion love </h1></a>
 <div class="container">
-  <h1 class="title">billion love</h1>
-  <h1 class="login-title"><b> LOGIN </b></h1>
+  <h1 class="login-title"><b> 로그인 </b></h1>
     <form action="/login/process" method="post">
       <div class="group">      
-        <input type="text" name="member_id" required>
+        <input type="email" name="member_id" required>
         <span class="highlight"></span>
         <span class="bar"></span>
-          <label>ID</label>
+          <label>아이디(이메일)</label>
       </div>
     
       <div class="group">      
         <input type="password" name="member_pw" required>
         <span class="highlight"></span>
               <span class="bar"></span>
-              <label>PW</label>
+              <label>비밀번호</label>
+              <% if(locals.msg) { %>
+                <font color="red"><%=msg%></font>
+              <% } %>  
       </div>
-            
-            <input type="submit" value="Login">  
+            <input type="submit" value="로그인">  
     </form>
+
+    <div class="account_container">
+      <!-- <div><a href="/signUp">회원가입</a></div> -->
+      <div><a href="/forgotId">아이디 찾기</a></div>
+      <div><a href="/forgotPw">비밀번호 찾기</a></div>
+      <div><font color="gray" size="2"> 회원가입 서비스를 준비중에 있습니다 </font></div> 
+    </div>
 </div>

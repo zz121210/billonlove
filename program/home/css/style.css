@@ -5,30 +5,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
 
-
-.title {
-    position: absolute;
-    left:50%;
-    top: -30px;
-    color: #f4f4f4;
-    font-family: "eras";
-    transform: translate(-50%,-50%);
-    font-size: 30px;
-
-    width: 180px;
-}
-
-
 .container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    max-width: 500px;
+    max-width: 310px;
     min-width: 300px;
     height: 500px;
-    transform: translate(-50%,-50%);
     padding: 20px;
-
+    margin: auto;
 }
 
 .link {
@@ -41,5 +23,9 @@
     background-color: #fafafa;
     border-radius: 25px 25px 25px 25px;
     line-height: 45px;
-    
+}
+
+a:nth-last-child(1) .link {
+    background-color: rgb(63, 63, 63);
+    color: white;
 }

@@ -329,6 +329,7 @@ var decoder_1 = __webpack_require__(5);
 var extractor_1 = __webpack_require__(11);
 var locator_1 = __webpack_require__(12);
 function scan(matrix) {
+    try {
     var locations = locator_1.locate(matrix);
     if (!locations) {
         return null;
@@ -357,16 +358,22 @@ function scan(matrix) {
         }
     }
     return null;
+    } catch (e) {
+        console.log('err')
+    }
 }
 var defaultOptions = {
     inversionAttempts: "attemptBoth",
 };
 function jsQR(data, width, height, providedOptions) {
+    
+    
     if (providedOptions === void 0) { providedOptions = {}; }
     var options = defaultOptions;
     Object.keys(options || {}).forEach(function (opt) {
         options[opt] = providedOptions[opt] || options[opt];
     });
+
     var shouldInvert = options.inversionAttempts === "attemptBoth" || options.inversionAttempts === "invertFirst";
     var tryInvertedFirst = options.inversionAttempts === "onlyInvert" || options.inversionAttempts === "invertFirst";
     var _a = binarizer_1.binarize(data, width, height, shouldInvert), binarized = _a.binarized, inverted = _a.inverted;
@@ -381,7 +388,7 @@ exports.default = jsQR;
 
 
 /***/ }),
-/* 4 */
+/*4*/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -893,6 +900,7 @@ var AlphanumericCharacterCodes = [
     " ", "$", "%", "*", "+", "-", ".", "/", ":",
 ];
 function decodeAlphanumeric(stream, size) {
+    try {
     var bytes = [];
     var text = "";
     var characterCountSize = [9, 11, 13][size];
@@ -911,6 +919,9 @@ function decodeAlphanumeric(stream, size) {
         text += AlphanumericCharacterCodes[a];
     }
     return { bytes: bytes, text: text };
+    } catch (e) {
+        console.log(`error ${e}`)
+    }
 }
 function decodeByte(stream, size) {
     var bytes = [];

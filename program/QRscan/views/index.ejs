@@ -1,37 +1,115 @@
-<script 
-    src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js">
-</script>
+<script src="../../assets/lib/jsQR.js"></script>
+<link rel="stylesheet" href="../../program/QRscan/css/style.css">
 
-<div id="reader"></div>
+<div id="loadingMessage"></div>
+  <div class="container">
+      <canvas id="canvas" hidden></canvas>
+      <div class="content">
+        <p><mark> 전자문진 작성 후 생성된 QR코드</mark>를 보여주세요! </p>
+        <font color="#c90000"> 카카오, 네이버 QR이 아닙니다 </font>
+      </div>
+  </div>
+  <div id="output" hidden>
+    <div id="outputMessage"></div>
+    <div hidden><span id="outputData"></span></div>
+  </div>
+  </div>
 
-<input type="file" id="qr-input-file" accept="image/*">
-<!-- 
-  Or add captured if you only want to enable smartphone camera, PC browsers will ignore it.
--->
 
-<input type="file" id="qr-input-file" accept="image/*" capture>
+    <div class="result"></div>
+  <script>
+    let audio = new Audio('../../assets/audio/complete.mp3')
+    let mode = 0;
+    if(mode == 0) {
+      setInterval(() => {
+        mode = 1
+      },1000)
+    }
 
-<script>
-  const html5QrCode = new Html5Qrcode(/* element id */ "reader");
+    var video = document.createElement("video");
+    var canvasElement = document.getElementById("canvas");
+    var canvas = canvasElement.getContext("2d");
+    var loadingMessage = document.getElementById("loadingMessage");
+    var outputContainer = document.getElementById("output");
+    var outputMessage = document.getElementById("outputMessage");
+    var outputData = document.getElementById("outputData");
 
-// File based scanning
-const fileinput = document.getElementById('qr-input-file');
-fileinput.addEventListener('change', e => {
-  if (e.target.files.length == 0) {
-    // No file selected, ignore 
-    return;
-  }
 
-  // Use the first item in the list
-  const imageFile = e.target.files[0];
-  html5QrCode.scanFile(imageFile, /* showImage= */true)
-  .then(qrCodeMessage => {
-    // success, use qrCodeMessage
-    console.log(qrCodeMessage);
-  })
-  .catch(err => {
-    // failure, handle it.
-    console.log(`Error scanning file. Reason: ${err}`)
-  });
-});
-</script>
+    function sendAjax(url, data) {
+      var data = { 'name': data };
+      data = JSON.stringify(data);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      xhr.setRequestHeader('Content-type', "application/json");
+      xhr.send(data);
+      xhr.addEventListener('load', function () {
+      document.querySelector(".result").innerHTML = xhr.responseText
+      });
+    }
+
+    function drawLine(begin, end, color) {
+      canvas.beginPath();
+      canvas.moveTo(begin.x, begin.y);
+      canvas.lineTo(end.x, end.y);
+      canvas.lineWidth = 4;
+      canvas.strokeStyle = color;
+      canvas.stroke();
+    }
+
+    // Use facingMode: environment to attemt to get the front camera on phones
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }).then(function(stream) {
+      video.srcObject = stream;
+      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+      video.play();
+      requestAnimationFrame(tick);
+    });
+            
+    function sendAjax(url, data) {       
+      var data = { 'data': data };
+      data = JSON.stringify(data);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      xhr.setRequestHeader('Content-type', "application/json");
+      xhr.send(data);
+      xhr.addEventListener('load', function () {
+        console.log(xhr.responseText);
+        document.querySelector(".result").innerHTML = xhr.responseText
+        if(xhr.responseText == 1) audio.play() 
+      });
+    }
+    
+    function tick() {
+      loadingMessage.innerText = "⌛ Loading video..."
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        loadingMessage.hidden = true;
+        canvasElement.hidden = false;
+        outputContainer.hidden = false;
+
+        canvasElement.height = video.videoHeight;
+        canvasElement.width = video.videoWidth;
+        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: "dontInvert",
+        });
+        if (code) {
+          drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+          outputMessage.hidden = true;
+          outputData.parentElement.hidden = false;
+          outputData.innerText = code.data;
+          let inputdata = code.data
+
+          if ( mode == 1 ) {
+            console.log(`${mode} : mode`)
+            sendAjax(`${window.location.href}/ajax`, inputdata)
+            mode = 0
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+      }
+  
+  </script>

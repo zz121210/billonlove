@@ -60,7 +60,7 @@
                 <% if(locals.filelist) { %>
                     <% for(let i=0; i<filelist.length; i++) {%>
                         <li>
-                            <%=i+1 %>. <a href="../../excel/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
+                            <%=i+1 %>. <a href="../../excel/<%=member_id%>/<%= filelist[i]%> " download=""><%=filelist[i]%></a>
                             <b> <a href="/excel/del/<%=filelist[i]%>">삭제</a> </b>         
                         </li>
                     <% } %> 

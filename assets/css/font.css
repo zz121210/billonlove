@@ -1,0 +1,12 @@
+@font-face {
+    src: url("../font/ErasBoldITC.ttf");
+    font-family: "eras";
+}
+
+.logo {
+    width:180px;
+    margin: auto;
+    color: #f4f4f4;
+    font-family: "eras";
+    font-size: 30px;
+}

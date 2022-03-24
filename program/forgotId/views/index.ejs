@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="../../program/forgotId/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<div class="margin-top"></div>
+<a href="/"> <h1 class="logo">billion love </h1></a>
+<div class="row">
+  <div class="col-md-12">
+    <% if(locals.msg) { %>
+      <form action="/forgotId/process" method="post">
+        <h1 class="login-title"><b> 아이디 찾기 </b></h1>
+        <legend><span class="number">1</span> 찾아낸 아이디</legend>
+
+        <%= msg %> 
+        <div class="account_container">
+           <a href="/login">로그인</a> / 
+           <a href="/forgotPw">비밀번호 찾기</a> / 
+           <a href="/forgotId">다시 찾기</a>  
+        </div>
+        <fieldset>
+      </form>
+    <% } else { %>
+      <form action="/forgotId/process" method="post">
+        <h1 class="login-title"><b> 아이디 찾기 </b></h1>
+        <legend><span class="number">1</span> 전화번호를 입력하세요.</legend>
+          <input type="number" name="member_phone" maxlength="11" required>
+          <input type="submit" value="아이디 찾기">
+        <fieldset>
+      </form>
+    <% } %>   
+    
+  </div>
+</div>

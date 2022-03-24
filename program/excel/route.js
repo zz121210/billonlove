@@ -4,7 +4,6 @@ const db = require('../../assets/lib/db')
 const xl = require('excel4node');
 const fs = require('fs')
 const session = require('express-session');	//세션관리용 미들웨어
-
 router.use(session({
   httpOnly: true,	//자바스크립트를 통해 세션 쿠키를 사용할 수 없도록 함
   secure: true,	//https 환경에서만 session 정보를 주고받도록처리
@@ -17,6 +16,7 @@ router.use(session({
   }
   })
 );
+
 let wb = new xl.Workbook();
 let ws = wb.addWorksheet('Sheet 1');
 let style = wb.createStyle({
@@ -30,15 +30,28 @@ let style = wb.createStyle({
 
 let params,page,maxView
 
-router.get("/:page", (req, res) => {
-  if(!req.session.a) {
-    res.render('../../program/login/views/index.ejs')
+const mkerFolder = (dir) => {
+  if(!fs.existsSync(dir)) {
+    if(!fs.existsSync(dir)) {
+      fs.mkdirSync(dir)
+    }
   }
-fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
-  let dateQuery,get,dateSelect
+}
+
+router.get("/:page", (req, res) => {
+  if(!req.session.member) {
+    res.redirect('/login') 
+  }
+  
+  mkerFolder(`./excel/${req.session.member.member_id}`)
+
+fs.readdir(`./excel/${req.session.member.member_id}`, (err, filelist) => {
+  let whereQuery,get,dateSelect
   get = req.query
   if(get.date) {
-    dateQuery = `WHERE date LIKE '${get.date}%'`
+    whereQuery = `WHERE date LIKE '${get.date}%' AND member_id = '${req.session.member.member_id}'`
+  } else {
+    whereQuery = `WHERE member_id = '${req.session.member.member_id}'`
   }
 
   if(get.date) {
@@ -53,11 +66,10 @@ fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel"
 
 
 
-  db.query(`SELECT * FROM paper ${dateQuery}`, (err, row) => {
+  db.query(`SELECT * FROM paper ${whereQuery} `, (err, row) => {
     maxPage = Math.ceil(row.length/30)
 
-  db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc LIMIT ${maxView},30 `, (err, rows) => {
-    console.log(`SELECT * FROM paper ${dateQuery} ORDER BY date desc LIMIT ${maxView},30 `);
+  db.query(`SELECT * FROM paper ${whereQuery} ORDER BY date desc LIMIT ${maxView},30 `, (err, rows) => {
     res.render("../../program/excel/views/index.ejs",
       {
         rows,
@@ -65,7 +77,8 @@ fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel"
         dateValue : get.date,
         page,
         maxPage,
-        dateSelect
+        dateSelect,
+        member_id : req.session.member.member_id
       }
     )
   })
@@ -76,21 +89,21 @@ fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel"
 
 router.get("/del/:value", (req, res) => {
   params = req.params
-  fs.unlink(`./home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${params.value}`, (err) => {
+  fs.unlink(`./excel/${req.session.member.member_id}/${params.value}`, (err) => {
     if(err) throw err
   })
 
-  fs.readdir("./excel", (err, filelist) => {
-    let dateQuery,get
+  fs.readdir(`./excel/${req.session.member.member_id}`, (err, filelist) => {
+    let whereQuery,get
     get = req.query
   
     if(get.date) {
-      dateQuery = `WHERE date LIKE '${get.date}%'`
+      whereQuery = `WHERE date LIKE '${get.date}%'`
     }
 
-    db.query(`SELECT * FROM paper ${dateQuery} ORDER BY date desc`, (err, rows) => {
+    db.query(`SELECT * FROM paper ${whereQuery} ORDER BY date desc`, (err, rows) => {
     db.query('SELECT date FROM paper GROUP BY date', (err, date) => { 
-      res.redirect('/excel')
+      res.redirect('/excel/1')
     })
     }) 
   })
@@ -98,13 +111,15 @@ router.get("/del/:value", (req, res) => {
 
 
 router.post('/process', (req, res) => {
-  fs.readdir("./home/hosting_users/billionlove/apps/billionlove_billionlove/excel", (err, filelist) => {
-    let dateQuery,post
+  fs.readdir("./excel", (err, filelist) => {
+    let whereQuery, post
     post = req.body
     if(post.date) {
-      dateQuery = `WHERE date LIKE '${post.date}%'`
+      whereQuery = `WHERE date LIKE '${post.date}%' AND member_id = '${req.session.member.member_id}'`
+    } else {
+      whereQuery = `WHERE member_id = '${req.session.member.member_id}'`
     }
-    db.query(`SELECT * FROM paper ${dateQuery} `, (err, rows) => {
+    db.query(`SELECT * FROM paper ${whereQuery} `, (err, rows) => {
       ws.cell(1, 1)
         .string('날짜')
       ws.cell(1, 2)
@@ -157,10 +172,10 @@ router.post('/process', (req, res) => {
         file_name = post.date
       }
 
-    wb.write(`./home/hosting_users/billionlove/apps/billionlove_billionlove/excel/${file_name} 출입명단.xlsx`);
+    wb.write(`./excel/${req.session.member.member_id}/${file_name} 출입명단.xlsx`);
     })
-  })
   res.redirect('/excel/1')
+})
 })
 
 

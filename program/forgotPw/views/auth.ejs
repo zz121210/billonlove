@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../../program/signUp/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<div class="margin-top"></div>
+<a href="/"> <h1 class="logo">billion love </h1></a>
+<div class="row">
+  <div class="col-md-12">
+    <form action="/forgotPw/auth" method="post">
+      <h1 class="login-title"><b> 이메일 인증 </b></h1>
+      <legend style="text-align: center;"><font size="3"> <%=member_id%>의 메일을 확인해주세요. </font></legend>
+        <form action="/forgotPw/auth" method="post">
+            <input type="hidden" name="member_id" value="<%=member_id%>" >
+            <input type="hidden" name="hexy_member_code" value="<%=hexy_member_code%>" >
+            <label for="auth">
+                코드 입력
+                <% if(locals.status) { %>
+                <font color='red'> <%= status%> </font>
+                <% } %> 
+            </label>
+            <input type="number" id="auth" name="authCode" required>
+
+            <input type="submit" value="인증하기">
+        </form>
+      <fieldset>
+
